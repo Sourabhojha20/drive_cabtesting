@@ -1,0 +1,184 @@
+<%- include('./header.ejs')  %>
+
+
+<div class="app-body">
+
+    <!-- Container starts -->
+    <div class="container-fluid">
+
+      <!-- Row start -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Drivers</h4>
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-end mb-2">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                  data-bs-target="#addContact">
+                  Add Driver
+                </button>
+              </div>
+              <div class="table-outer">
+                <div class="table-responsive">
+                  <table class="table align-middle custom-table m-0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Wallet</th>
+                            <th>Status</th>
+                            <th>Online Status</th>
+                            <th>Vehicle No./Vehicle Type</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% drivers.forEach((driver, index) => { %>
+                            <tr>
+                                <td><%= index + 1 %></td>
+                                <td><%= driver.name %></td>
+                                <td><%= driver.phone %></td>
+                                <td>₹<%= driver.wallet || '-' %></td>
+                                <td>
+                                    <% if (driver.status == 1) { %>
+                                        <span class="badge bg-success">Active</span>
+                                    <% } else { %>
+                                        <span class="badge bg-danger">Inactive</span>
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <% if (driver.online_status == 1) { %>
+                                        <span class="badge bg-success">Online</span>
+                                    <% } else { %>
+                                        <span class="badge bg-danger">Offline</span>
+                                    <% } %>
+                                </td>
+                                <td>
+                                  <%= driver.DriverDocuments[0]?.vehicle_number || '-' %> /
+                                  <%= driver.VehicleType?.type_name || '-' %>
+                                </td>
+                                
+                                <td>
+                                  <a href="" 
+                                   class="btn btn-outline-primary btn-sm" 
+                                   data-bs-toggle="tooltip" 
+                                   data-bs-placement="top" 
+                                   title="Edit">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a href="" 
+                                 class="btn btn-outline-danger btn-sm" 
+                                 onclick="return confirm('Are you sure you want to delete this vehicle?')" 
+                                 data-bs-toggle="tooltip" 
+                                 data-bs-placement="top" 
+                                 title="Delete">
+                                  <i class="bi bi-trash3"></i>
+                              </a>
+                              
+                             </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                
+                </div>
+              </div>
+              <!-- Modal Add Contact -->
+              <div class="modal fade" id="addContact" tabindex="-1" aria-labelledby="addContactLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addContactLabel">
+                        Add Contact
+                      </h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-xl-12 col-12">
+                          <div class="row">
+                            <div class="col-6">
+                              <!-- Form Field Start -->
+                              <div class="mb-3">
+                                <label for="fullName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="fullName" placeholder="Full Name" />
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <!-- Form Field Start -->
+                              <div class="mb-3">
+                                <label for="emailID" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="emailID" placeholder="Email ID" />
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <!-- Form Field Start -->
+                              <div class="mb-3">
+                                <label for="contactNumber" class="form-label">Phone Number</label>
+                                <input type="text" class="form-control" id="contactNumber"
+                                  placeholder="Contact" />
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <!-- Form Field Start -->
+                              <div class="mb-3">
+                                <label for="companyName" class="form-label">Company</label>
+                                <input type="text" class="form-control" id="companyName"
+                                  placeholder="Company" />
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <!-- Form Field Start -->
+                              <div class="mb-3">
+                                <label for="designationName" class="form-label">Designation</label>
+                                <input type="text" class="form-control" id="designationName"
+                                  placeholder="Designation" />
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <!-- Form Field Start -->
+                              <div class="mb-3">
+                                <label for="locationName" class="form-label">Location</label>
+                                <input type="text" class="form-control" id="locationName"
+                                  placeholder="Location" />
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <!-- Form Field Start -->
+                              <div class="mb-3">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-control" rows="2"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                      </button>
+                      <button type="button" class="btn btn-primary">
+                        Create Contact
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Row end -->
+
+    </div>
+    <!-- Container ends -->
+
+  </div>
+
+<%- include('./footer.ejs')  %>

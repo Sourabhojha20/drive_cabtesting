@@ -1,0 +1,96 @@
+<%- include('./header.ejs')  %>
+
+<div class="app-body">
+    <!-- Container starts -->
+    <div class="container-fluid">
+
+        <!-- Row start -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Booking Details</h4>
+                    </div>
+                    <div class="card-body">
+
+                    
+                        <!-- Additional Ride Details -->
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <h5 class="fw-bold">Pickup Details</h5>
+                                <p><strong>Address:</strong> <%= booking.pickup_address %></p>
+                                <p><strong>Coordinates:</strong> (<%= booking.pickup_lat %>, <%= booking.pickup_lng %>)</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="fw-bold">Dropoff Details</h5>
+                                <p><strong>Address:</strong> <%= booking.dropoff_address %></p>
+                                <p><strong>Coordinates:</strong> (<%= booking.dropoff_lat %>, <%= booking.dropoff_lng %>)</p>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <h5 class="fw-bold">Fare & Ride Info</h5>
+                                <p><strong>Estimated Fare:</strong> ₹<%= booking.fare_estimate %></p>
+                                <p><strong>Final Fare:</strong> ₹<%= booking.final_fare %></p>
+                                <p><strong>Distance:</strong> <%= booking.distance_km %> km</p>
+                                <p><strong>Duration:</strong> <%= booking.duration_min %> mins</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="fw-bold">Ride Timing & Status</h5>
+                                <p><strong>Scheduled At:</strong> <%= new Date(booking.scheduled_at).toLocaleString() %></p>
+                                <p><strong>Completed At:</strong> <%= new Date(booking.completed_at).toLocaleString() %></p>
+                                <p><strong>Status:</strong> <%= booking.status.charAt(0).toUpperCase() + booking.status.slice(1) %></p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <!-- Driver Details -->
+                            <div class="col-md-6">
+                                <h5 class="fw-bold">Driver Information</h5>
+                                <p><strong>Name:</strong> <%= booking.Driver.name %></p>
+                                <p><strong>Mobile:</strong> <%= booking.Driver.phone %></p>
+                                <p><strong>Vehicle:</strong> <%= booking.Driver.DriverDocuments[0]?.vehicle_number || 'N/A' %></p>
+                                <p><strong>Vehicle Type:</strong> 
+                                    <%= booking.Driver.VehicleTypes && booking.Driver.VehicleTypes.length > 0 ? booking.Driver.VehicleTypes[0].type_name : 'N/A' %>
+                                </p>
+                            </div>
+
+                            <!-- User Details -->
+                            <div class="col-md-6">
+                                <h5 class="fw-bold">User Information</h5>
+                                <p><strong>Name:</strong> <%= booking.User.name %></p>
+                                <p><strong>Mobile:</strong> <%= booking.User.phone %></p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <!-- Ratings and Reviews -->
+                            <div class="col-md-6">
+                                <h5 class="fw-bold">Ratings and Reviews</h5>
+                                <p><strong>Rated by Driver:</strong> <%= booking.Rating_Reviews.rated_by_driver %></p>
+                                <p><strong>Rated by User:</strong> <%= booking.Rating_Reviews.rated_by_user %></p>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h5 class="fw-bold">Review Details</h5>
+                                <p><strong>Review by User:</strong> <%= booking.Rating_Reviews.reviewed_by_user %></p>
+                                <p><strong>Review by Driver:</strong> <%= booking.Rating_Reviews.reviewed_by_driver %></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row end -->
+
+    </div>
+    <!-- Container ends -->
+</div>
+
+<%- include('./footer.ejs')  %>

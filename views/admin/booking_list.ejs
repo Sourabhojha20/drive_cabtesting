@@ -1,0 +1,84 @@
+<%- include('./header.ejs')  %>
+
+<div class="app-body">
+
+    <!-- Container starts -->
+    <div class="container-fluid">
+
+      <!-- Row start -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-3">
+            <div class="card-header">
+              <h4 class="card-title">Trips History</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-outer">
+                <div class="table-responsive">
+                  <table class="table align-middle custom-table m-0">
+                    <thead>
+                      <tr class="bg-light">
+                        <th>#</th>
+                        <th>Client</th>
+                        <th>Driver</th>
+                        <th>Trip From</th>
+                        <th>Trip To</th>
+                        <th>Duration</th>
+                        <th>Amount</th>
+                        <th>Vehicle</th>
+                        <th style="width:90px;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% bookings.forEach((ride, index) => { %>
+                        <tr>
+                          <td><%= index + 1 %></td>
+                          <td><%= ride.User?.name || '-' %></td>
+                          <td><%= ride.Driver?.name || '-' %></td>
+                          <td><%= ride.pickup_address %></td>
+                          <td><%= ride.dropoff_address %></td>
+                          <td><%= ride.duration_min %> Mins</td>
+                          <td>₹<%= ride.final_fare || '0.00' %></td>
+                          <td>
+                            <%= ride.Driver?.DriverDocuments?.[0]?.vehicle_number || '-' %> /
+                            <%= ride.Driver?.VehicleType?.type_name || '-' %>
+                          </td>
+                          <td>
+                            <a href="/bookings-details/<%= ride.id %>" 
+                             class="btn btn-outline-primary btn-sm" 
+                             data-bs-toggle="tooltip" 
+                             data-bs-placement="top" 
+                             title="Edit">
+                              <i class="bi bi-pencil-square"></i>
+                          </a>
+                          <a href="" 
+                           class="btn btn-outline-danger btn-sm" 
+                           onclick="return confirm('Are you sure you want to delete this vehicle?')" 
+                           data-bs-toggle="tooltip" 
+                           data-bs-placement="top" 
+                           title="Delete">
+                            <i class="bi bi-trash3"></i>
+                        </a>
+                        
+                       </td>
+                        </tr>
+                      <% }) %>
+                    </tbody>
+                  </table>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Row end -->
+
+    </div>
+    <!-- Container ends -->
+
+</div>
+
+
+
+<%- include('./footer.ejs')  %>
