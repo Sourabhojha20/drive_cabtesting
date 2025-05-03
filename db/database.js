@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('unitedcabs', 'root', '', {
-  host: '127.0.0.1',
+const sequelize = new Sequelize('cabdrive', 'cabdrive', 'wqaDI%Y7}gpf', {
+  host: '68.178.151.225',
   dialect: 'mysql',
   port: 3306,
   logging: false
@@ -17,4 +17,4 @@ const connectdb = async () => {
 };
 
 module.exports = connectdb;
-module.exports.sequelize = sequelize; // Optional: export sequelize instance for models
+module.exports.sequelize = sequelize; 
