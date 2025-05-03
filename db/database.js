@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('cabdrive', 'cabdrive', 'wqaDI%Y7}gpf', {
-  host: '68.178.151.225',
+  host: '44.227.217.144',
   dialect: 'mysql',
   port: 3306,
   logging: false
