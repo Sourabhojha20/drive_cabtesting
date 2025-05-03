@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('cabdrive', 'jsq6g7v75c3j6pm5xci5', 'pscale_pw_dG39MxErPcjKcAcpHF5zu4pIdh58FGhmyfi9WUMg455', {
+const sequelize = new Sequelize('cabdrive', 'q14do4pqjw32zi0r2rzn', 'pscale_pw_HySyeZtqiS0yosnSk9uxkI5CjSUo4SD9I27OUj6hk9X', {
   host: 'aws.connect.psdb.cloud',
   dialect: 'mysql',
   dialectOptions: {
