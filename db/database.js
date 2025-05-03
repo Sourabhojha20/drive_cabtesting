@@ -1,11 +1,12 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('cabdrive', 'cabdrive', 'wqaDI%Y7}gpf', {
+const sequelize = new Sequelize('mycpanel_cabdrive', 'mycpanel_cabdrive', 'wqaDI%Y7}gpf', {
   host: '68.178.151.225',
   dialect: 'mysql',
   port: 3306,
   logging: false
 });
+
 
 const connectdb = async () => {
   try {
